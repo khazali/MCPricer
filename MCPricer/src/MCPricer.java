@@ -36,14 +36,16 @@ class MCPricer {
         double sigma = this.impliedVolatility;
         int i;
         double W = 0;
+        double dt = 1.0/365.0;
+        double sqrtdt = Math.sqrt(dt);
      
 
         duration = Days.daysBetween(valuationDate.toLocalDate(), maturityDate.toLocalDate()).getDays();
         stockPrice = new double[duration];
 
         for (i = 0; i < duration; i++) {
-            W += DrawFromStdNormal();
-            stockPrice[i] = initialStockPrice * Math.exp((mu - 0.5 * sigma * sigma) * (i/365.0) + sigma * W);            //A year is considered as 365 days
+            W += DrawFromStdNormal()*sqrtdt;
+            stockPrice[i] = initialStockPrice * Math.exp((mu - 0.5 * sigma * sigma) * (i*dt) + sigma * W);            //A year is considered as 365 days
         }
 
 
