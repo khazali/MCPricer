@@ -1,6 +1,4 @@
-import org.joda.time.*;
-import org.joda.time.format.*;
-
+import java.util.*;
 
 
 
@@ -8,55 +6,48 @@ class MCPricer {
     private int numberOfSims;
     private double [] stockPrice;
     private double impliedVolatility;
-    private double riskFreeRate;
-    private DateTime valuationDate=new DateTime();
-    private DateTime maturityDate=new DateTime();
+    private double riskFreeRate;    
     private double initialStockPrice;
     private int duration;
+    private Random rndn;
+    private FinancialInstrument fi;
+    private final double dt = 1.0/365.0;
+    private final double sqrtdt = Math.sqrt(dt);    
 
-    /*
-    public MCPricer() {
-        numberOfSims=1000;
-    }
-    */
+    
 
-    public MCPricer(int N, String valuationDate, double initialStockPrice, double impliedVolatility, double riskFreeRate) {
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
+    public MCPricer(int N, FinancialInstrument Instrument) {        
         this.numberOfSims = N;
-        this.valuationDate = formatter.parseDateTime(valuationDate);
-        this.impliedVolatility = impliedVolatility;
-        this.riskFreeRate = riskFreeRate;
-        this.initialStockPrice = initialStockPrice;
-
-        //maturityDate???
+        rndn=new Random(new Date().getTime());
+        this.duration=Instrument.GetDuration();
+        this.stockPrice=new double[this.duration];
+        this.impliedVolatility=Instrument.GetImpliedVolatility();
+        this.riskFreeRate=Instrument.GetRiskFreeRate() / 100;
+        this.initialStockPrice=Instrument.GetInitialStockPrice();  
+        stockPrice = new double[duration];
+        stockPrice[0]=initialStockPrice;   
+        fi=Instrument;   
     }
 
-    public void ConstructStockPrice() {
-        double mu = this.riskFreeRate;      //Risk-neutral assumption
-        double sigma = this.impliedVolatility;
+    public void ConstructStockPrice() {        
         int i;
-        double W = 0;
-        double dt = 1.0/365.0;
-        double sqrtdt = Math.sqrt(dt);
-     
+        double W = 0;       
 
-        duration = Days.daysBetween(valuationDate.toLocalDate(), maturityDate.toLocalDate()).getDays();
-        stockPrice = new double[duration];
+        for (i = 1; i <= duration; i++) {
+            W += rndn.nextGaussian()*sqrtdt;
+            stockPrice[i] = initialStockPrice * Math.exp((this.riskFreeRate - 0.5 * this.impliedVolatility * this.impliedVolatility) * (i*dt) + this.impliedVolatility * W);            //A year is considered as 365 days
+        }
+    }
 
-        for (i = 0; i < duration; i++) {
-            W += DrawFromStdNormal()*sqrtdt;
-            stockPrice[i] = initialStockPrice * Math.exp((mu - 0.5 * sigma * sigma) * (i*dt) + sigma * W);            //A year is considered as 365 days
+    public double RunSimulation() {
+        int i;
+        double sum = 0;
+
+        for (i = 0; i < numberOfSims; i++) {
+            ConstructStockPrice();
+            sum += fi.CaculatePrice(stockPrice);
         }
 
-
-        
-
-
-    }
-
-    public double DrawFromStdNormal() {
-        //change it later
-        double r=0;
-        return r;
+        return sum/numberOfSims;
     }
 }
