@@ -1,5 +1,5 @@
 public class IncorrectContractType extends Exception { 
-    public IncorrectContractType() {
-        super();
+    public IncorrectContractType(String Message) {
+        super(Message);
     }
 }

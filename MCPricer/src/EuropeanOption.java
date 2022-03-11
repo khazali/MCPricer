@@ -79,13 +79,13 @@ public class EuropeanOption implements FinancialInstrument {
         return this.initialStockPrice;
     }
 
-    public void SetType(String type) throws IncorrectContractType{
+    public void SetType(String type) throws IncorrectContractType {
         if (type.equals("Call") || type.equals("Put")) {
             this.type = type;
         } else {
-            throw new IncorrectContractType();
+            throw new IncorrectContractType("Incorrect contract type");
         }
-        this.type = type;
+        //this.type = type;
     }
 
     public String GetType() {
@@ -120,8 +120,6 @@ public class EuropeanOption implements FinancialInstrument {
         Discount(profit);
 
         return this.price;
-
-        //return profit;
     }
 
 
