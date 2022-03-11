@@ -45,7 +45,7 @@ public class BlackScholesMerton {
         while (aa>1e-20) {
             sum+=a;
             n++;
-            a*=-z*z/(n*(2*n+1)/(2*n-1));
+            a*=-z*z/(n*(2*n+1.0)/(2*n-1.0));
             aa=(a<0)?-a:a;            
         }
         sum+=a;
