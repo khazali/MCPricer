@@ -65,7 +65,7 @@ public class BarrierOption implements FinancialInstrument {
     public void SetValuationDate(String valuationDate) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
         this.valuationDate = formatter.parseDateTime(valuationDate);
-        this.duration = Days.daysBetween(this.valuationDate.toLocalDate(), this.maturityDate.toLocalDate()).getDays()+1;
+        this.duration = Days.daysBetween(this.valuationDate.toLocalDate(), this.maturityDate.toLocalDate()).getDays();
     }
 
     public DateTime GetValuationDate() {       
@@ -75,7 +75,7 @@ public class BarrierOption implements FinancialInstrument {
     public void SetMaturityDate(String maturityDate) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
         this.maturityDate = formatter.parseDateTime(maturityDate);
-        this.duration = Days.daysBetween(this.valuationDate.toLocalDate(), this.maturityDate.toLocalDate()).getDays()+1;
+        this.duration = Days.daysBetween(this.valuationDate.toLocalDate(), this.maturityDate.toLocalDate()).getDays();
     }
 
     public DateTime GetMaturityDate() {
@@ -132,7 +132,6 @@ public class BarrierOption implements FinancialInstrument {
                 
             if (pass) {
                 profit = stockPrice[stockPrice.length - 1] - strike;
-                if (profit < 0) profit = 0;
             }
         }
         else if (type.equals("CallDownIn")) {
@@ -146,7 +145,6 @@ public class BarrierOption implements FinancialInstrument {
                 
             if (pass) {
                 profit = stockPrice[stockPrice.length - 1] - strike;
-                if (profit < 0) profit = 0;
             }
         }
         else if (type.equals("CallUpOut")) {
@@ -160,7 +158,6 @@ public class BarrierOption implements FinancialInstrument {
                 
             if (pass) {
                 profit = stockPrice[stockPrice.length - 1] - strike;
-                if (profit < 0) profit = 0;
             }
         }
         else if (type.equals("CallDownOut")) {
@@ -174,7 +171,6 @@ public class BarrierOption implements FinancialInstrument {
                 
             if (pass) {
                 profit = stockPrice[stockPrice.length - 1] - strike;
-                if (profit < 0) profit = 0;
             }
         }
 
@@ -189,7 +185,6 @@ public class BarrierOption implements FinancialInstrument {
                 
             if (pass) {
                 profit = strike - stockPrice[stockPrice.length - 1];
-                if (profit < 0) profit = 0;
             }
         }
         else if (type.equals("PutDownIn")) {
@@ -203,7 +198,6 @@ public class BarrierOption implements FinancialInstrument {
                 
             if (pass) {
                 profit = strike - stockPrice[stockPrice.length - 1];
-                if (profit < 0) profit = 0;
             }
         }
         else if (type.equals("PutUpOut")) {
@@ -217,7 +211,6 @@ public class BarrierOption implements FinancialInstrument {
                 
             if (pass) {
                 profit = strike - stockPrice[stockPrice.length - 1];
-                if (profit < 0) profit = 0;
             }
         }
         else if (type.equals("PutDownOut")) {
@@ -231,11 +224,10 @@ public class BarrierOption implements FinancialInstrument {
                 
             if (pass) {
                 profit = strike - stockPrice[stockPrice.length - 1];
-                if (profit < 0) profit = 0;
             }
         }
 
-
+        if (profit < 0) profit = 0;
         Discount(profit);
 
         return this.price;

@@ -27,7 +27,7 @@ class MCPricer {
         this.numberOfSims = N;
         rndn=new Random(new Date().getTime());
         this.duration=Instrument.GetDuration();
-        this.stockPrice=new double[this.duration+1];
+        this.stockPrice=new double[this.duration];
         this.impliedVolatility=Instrument.GetImpliedVolatility();
         this.riskFreeRate=Instrument.GetRiskFreeRate();
         this.initialStockPrice=Instrument.GetInitialStockPrice();          
@@ -38,7 +38,7 @@ class MCPricer {
         int i;
         double W = 0;       
 
-        for (i = 1; i <= duration; i++) {
+        for (i = 0; i < duration; i++) {
             W += rndn.nextGaussian()*sqrtdt;
             this.stockPrice[i] = initialStockPrice * Math.exp((this.riskFreeRate - 0.5 * this.impliedVolatility * this.impliedVolatility) * (i*dt) + this.impliedVolatility * W);            //A year is considered as 365 days
         }
@@ -49,7 +49,7 @@ class MCPricer {
         double sum = 0;
 
         isSimulated=true;
-        this.stockPrice[0]=initialStockPrice;
+        //this.stockPrice[0]=initialStockPrice;
 
         for (i = 0; i < numberOfSims; i++) {
             ConstructStockPrice();
