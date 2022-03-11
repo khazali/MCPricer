@@ -3,16 +3,28 @@ class Main {
         //BlackScholesMerton bsc = new BlackScholesMerton(42.0, 40.0, 0.1, 0.2, 0.5, "Call");
         //System.out.println("");
         //BlackScholesMerton bsp = new BlackScholesMerton(42.0, 40.0, 0.1, 0.2, 0.5, "Put");
-        BlackScholesMerton bsc = new BlackScholesMerton(49.0, 50.0, 0.05, 0.2, 0.3846, "Call");
+        //BlackScholesMerton bsc = new BlackScholesMerton(49.0, 50.0, 0.05, 0.2, 0.3846, "Call");
 
         try {
             //EuropeanOption eoc = new EuropeanOption(42.0, 40.0, 0.1, 0.2, 0.5, "Call");
-            EuropeanOption eoc = new EuropeanOption(49.0, 50.0, 0.05, 0.2, 0.3846, "Calls");
+            /*
+            EuropeanOption eoc = new EuropeanOption(49.0, 50.0, 0.05, 0.2, 0.3846, "Call");
             MCPricer mcc = new MCPricer(1000000, eoc);
             mcc.CalculateGreeks();
             System.out.println(mcc.GetDelta());
             System.out.println(mcc.GetGamma());
-            System.out.println(mcc.GetVega());
+            System.out.println(mcc.GetVega()); */
+
+
+            BarrierOption bc = new BarrierOption(49.0, 50.0, 55.0, 0.05, 0.2, 0.3846, "CallUpIn");
+            MCPricer mcc = new MCPricer(1000000, bc);
+            System.out.println(mcc.RunSimulation());
+            //mcc.CalculateGreeks();
+            //System.out.println(mcc.GetPrice());
+            //System.out.println(mcc.GetDelta());
+            //System.out.println(mcc.GetGamma());
+            //System.out.println(mcc.GetVega());
+            
 
             //System.out.println(mcc.RunSimulation());
 

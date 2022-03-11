@@ -72,6 +72,10 @@ class MCPricer {
         return this.delta;
     }
 
+    public double GetPrice() {
+        return this.FPrice;
+    }
+
     public void CalculateGreeks() {
         double FPlusD, FMinusD, F, vol, S0, CPeps, CVeps;
 
