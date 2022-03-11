@@ -115,8 +115,8 @@ public class EuropeanOption implements FinancialInstrument {
             profit=strike-stockPrice[stockPrice.length-1];
         }
         
-        if (profit < 0) profit = 0;
-        Discount(profit);
+        if (profit < 0) this.price = 0;
+        else Discount(profit);
 
         return this.price;
     }

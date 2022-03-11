@@ -149,8 +149,8 @@ public class AsianOption implements FinancialInstrument {
             profit = strike - s;
         }
 
-        if (profit < 0) profit = 0;
-        Discount(profit);
+        if (profit < 0) this.price = 0;
+        else Discount(profit);
 
         return this.price;
     }

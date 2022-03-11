@@ -227,8 +227,8 @@ public class BarrierOption implements FinancialInstrument {
             }
         }
 
-        if (profit < 0) profit = 0;
-        Discount(profit);
+        if (profit < 0) this.price = 0;
+        else Discount(profit);
 
         return this.price;
     }
