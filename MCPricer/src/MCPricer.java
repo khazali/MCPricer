@@ -12,7 +12,8 @@ class MCPricer {
     private Random rndn;
     private FinancialInstrument fi;
     private final double dt = 1.0/365.0;
-    private final double sqrtdt = Math.sqrt(dt);    
+    private final double sqrtdt = Math.sqrt(dt);
+    private double FPrice;    
 
     
 
@@ -20,11 +21,10 @@ class MCPricer {
         this.numberOfSims = N;
         rndn=new Random(new Date().getTime());
         this.duration=Instrument.GetDuration();
-        this.stockPrice=new double[this.duration];
+        this.stockPrice=new double[this.duration+1];
         this.impliedVolatility=Instrument.GetImpliedVolatility();
-        this.riskFreeRate=Instrument.GetRiskFreeRate() / 100;
+        this.riskFreeRate=Instrument.GetRiskFreeRate();
         this.initialStockPrice=Instrument.GetInitialStockPrice();  
-        stockPrice = new double[duration];
         stockPrice[0]=initialStockPrice;   
         fi=Instrument;   
     }
@@ -48,6 +48,8 @@ class MCPricer {
             sum += fi.CaculatePrice(stockPrice);
         }
 
-        return sum/numberOfSims;
+        this.FPrice = sum/numberOfSims;
+        return FPrice;
     }
+    
 }

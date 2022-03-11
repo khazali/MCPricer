@@ -15,6 +15,7 @@ public interface FinancialInstrument {
     public void SetType(String type) throws IncorrectContractType;
     public String GetType();
     public int GetDuration();
+    public void SetDuration(int duration);
 
 
 

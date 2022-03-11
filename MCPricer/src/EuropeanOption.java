@@ -12,7 +12,7 @@ public class EuropeanOption implements FinancialInstrument {
     private int duration;
     private double price;
 
-    public EuropeanOption(double strike, double riskFreeRate, double impliedVolatility, String type, String valuationDate, String maturityDate, double initialStockPrice) throws IncorrectContractType{
+    public EuropeanOption(double initialStockPrice, double strike, double riskFreeRate, double impliedVolatility, String valuationDate, String maturityDate, String type) throws IncorrectContractType{
         SetStrike(strike);
         SetRiskFreeRate(riskFreeRate);
         SetImpliedVolatility(impliedVolatility);
@@ -22,16 +22,25 @@ public class EuropeanOption implements FinancialInstrument {
         SetInitialStockPrice(initialStockPrice);
     }
 
+    public EuropeanOption(double initialStockPrice, double strike, double riskFreeRate, double impliedVolatility, double duration, String type) throws IncorrectContractType{
+        SetStrike(strike);
+        SetRiskFreeRate(riskFreeRate);
+        SetImpliedVolatility(impliedVolatility);
+        SetType(type);
+        SetDuration(((int) Math.round(duration*365.0)));
+        SetInitialStockPrice(initialStockPrice);
+    }
+
     public double GetPrice() {
         return this.price;
     }
 
     public void SetRiskFreeRate(double riskFreeRate) {
-        this.riskFreeRate = riskFreeRate / 100;     //Rate is expressed as a percentage
+        this.riskFreeRate = riskFreeRate;
     }
 
     public double GetRiskFreeRate() {
-        return this.riskFreeRate * 100;         //Rate is expressed as a percentage
+        return this.riskFreeRate;
     }
 
     public void SetImpliedVolatility(double impliedVolatility) {
@@ -87,6 +96,10 @@ public class EuropeanOption implements FinancialInstrument {
         return this.duration;
     }
 
+    public void SetDuration(int duration) {
+        this.duration = duration;
+    }
+
     public void SetStrike(double strike) {
         this.strike = strike;
     }
@@ -107,11 +120,13 @@ public class EuropeanOption implements FinancialInstrument {
         Discount(profit);
 
         return this.price;
+
+        //return profit;
     }
 
 
     public double Discount(double profit) {
-        this.price=Math.exp(-this.riskFreeRate*this.duration/365.0);
+        this.price=profit*Math.exp(-this.riskFreeRate*this.duration/365.0);
         return this.price;
     }
 }
