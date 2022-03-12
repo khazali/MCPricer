@@ -108,7 +108,7 @@ public class Autocallable implements FinancialInstrument {
 
     
     public double CaculatePrice(double [] stockPrice) {
-        double profit = 0;
+        double profit;
         int i;       
        
         for (i = 0; i < numberOfIntervals; i++) {
@@ -123,8 +123,8 @@ public class Autocallable implements FinancialInstrument {
             this.price = Discount(this.initialStockPrice, this.duration);
         }
         else {
-            profit=stockPrice[stockPrice.length - 1];
-            this.price = Discount(this.initialStockPrice, this.duration);
+            profit=this.initialStockPrice - (this.barrier - stockPrice[stockPrice.length - 1]);
+            this.price = Discount(profit, this.duration);
         }
         
         return this.price;
