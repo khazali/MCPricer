@@ -55,21 +55,13 @@ public class EuropeanOption implements FinancialInstrument {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
         this.valuationDate = formatter.parseDateTime(valuationDate);
         this.duration = Days.daysBetween(this.valuationDate.toLocalDate(), this.maturityDate.toLocalDate()).getDays();
-    }
-
-    public DateTime GetValuationDate() {       
-        return this.valuationDate;
-    }
+    }    
 
     public void SetMaturityDate(String maturityDate) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
         this.maturityDate = formatter.parseDateTime(maturityDate);
         this.duration = Days.daysBetween(this.valuationDate.toLocalDate(), this.maturityDate.toLocalDate()).getDays();
-    }
-
-    public DateTime GetMaturityDate() {
-        return this.maturityDate;
-    }
+    }    
 
     public void SetInitialStockPrice(double initialStockPrice) {
         this.initialStockPrice = initialStockPrice;
@@ -86,11 +78,7 @@ public class EuropeanOption implements FinancialInstrument {
             throw new IncorrectContractType("Incorrect contract type");
         }
         //this.type = type;
-    }
-
-    public String GetType() {
-        return this.type;
-    }
+    }    
 
     public int GetDuration() {
         return this.duration;
@@ -108,22 +96,21 @@ public class EuropeanOption implements FinancialInstrument {
     public double CaculatePrice(double [] stockPrice) {
         double profit = 0;
 
-        if (type.equals("Call")) {
-            profit=stockPrice[stockPrice.length-1]-strike;
+        if (this.type.equals("Call")) {
+            profit=stockPrice[stockPrice.length-1]-this.strike;
         }
-        else if (type.equals("Put")) {
-            profit=strike-stockPrice[stockPrice.length-1];
+        else if (this.type.equals("Put")) {
+            profit=this.strike-stockPrice[stockPrice.length-1];
         }
         
         if (profit < 0) this.price = 0;
-        else Discount(profit);
+        else this.price = Discount(profit, this.duration);
 
         return this.price;
     }
 
 
-    public double Discount(double profit) {
-        this.price=profit*Math.exp(-this.riskFreeRate*this.duration/365.0);
-        return this.price;
+    public double Discount(double profit, double contractDuration) {        
+        return profit*Math.exp(-this.riskFreeRate*contractDuration/365.0);
     }
 }

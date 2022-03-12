@@ -32,11 +32,7 @@ public class BarrierOption implements FinancialInstrument {
         SetDuration(((int) Math.round(duration*365.0)));
         SetInitialStockPrice(initialStockPrice);
         SetBarrier(barrier);
-    }
-
-    public double GetBarrier() {
-        return this.barrier;
-    }
+    }    
 
     public void SetBarrier(double barrier) {
         this.barrier = barrier;
@@ -67,19 +63,11 @@ public class BarrierOption implements FinancialInstrument {
         this.valuationDate = formatter.parseDateTime(valuationDate);
         this.duration = Days.daysBetween(this.valuationDate.toLocalDate(), this.maturityDate.toLocalDate()).getDays();
     }
-
-    public DateTime GetValuationDate() {       
-        return this.valuationDate;
-    }
-
+    
     public void SetMaturityDate(String maturityDate) {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy");
         this.maturityDate = formatter.parseDateTime(maturityDate);
         this.duration = Days.daysBetween(this.valuationDate.toLocalDate(), this.maturityDate.toLocalDate()).getDays();
-    }
-
-    public DateTime GetMaturityDate() {
-        return this.maturityDate;
     }
 
     public void SetInitialStockPrice(double initialStockPrice) {
@@ -98,11 +86,7 @@ public class BarrierOption implements FinancialInstrument {
         }
         //this.type = type;
     }
-
-    public String GetType() {
-        return this.type;
-    }
-
+   
     public int GetDuration() {
         return this.duration;
     }
@@ -121,122 +105,121 @@ public class BarrierOption implements FinancialInstrument {
         int i;
         boolean pass;
 
-        if (type.equals("CallUpIn")) {
+        if (this.type.equals("CallUpIn")) {
             pass = false;
             for (i = 0; i < stockPrice.length; i++) {
-                if (stockPrice[i] >= barrier) {
+                if (stockPrice[i] >= this.barrier) {
                     pass = true;
                     break;
                 }
             }
                 
             if (pass) {
-                profit = stockPrice[stockPrice.length - 1] - strike;
+                profit = stockPrice[stockPrice.length - 1] - this.strike;
             }
         }
-        else if (type.equals("CallDownIn")) {
+        else if (this.type.equals("CallDownIn")) {
             pass = false;
             for (i = 0; i < stockPrice.length; i++) {
-                if (stockPrice[i] <= barrier) {
+                if (stockPrice[i] <= this.barrier) {
                     pass = true;
                     break;
                 }
             }
                 
             if (pass) {
-                profit = stockPrice[stockPrice.length - 1] - strike;
+                profit = stockPrice[stockPrice.length - 1] - this.strike;
             }
         }
-        else if (type.equals("CallUpOut")) {
+        else if (this.type.equals("CallUpOut")) {
             pass = true;
             for (i = 0; i < stockPrice.length; i++) {
-                if (stockPrice[i] >= barrier) {
+                if (stockPrice[i] >= this.barrier) {
                     pass = false;
                     break;
                 }
             }
                 
             if (pass) {
-                profit = stockPrice[stockPrice.length - 1] - strike;
+                profit = stockPrice[stockPrice.length - 1] - this.strike;
             }
         }
-        else if (type.equals("CallDownOut")) {
+        else if (this.type.equals("CallDownOut")) {
             pass = true;
             for (i = 0; i < stockPrice.length; i++) {
-                if (stockPrice[i] <= barrier) {
+                if (stockPrice[i] <= this.barrier) {
                     pass = false;
                     break;
                 }
             }
                 
             if (pass) {
-                profit = stockPrice[stockPrice.length - 1] - strike;
+                profit = stockPrice[stockPrice.length - 1] - this.strike;
             }
         }
 
-        else if (type.equals("PutUpIn")) {
+        else if (this.type.equals("PutUpIn")) {
             pass = false;
             for (i = 0; i < stockPrice.length; i++) {
-                if (stockPrice[i] >= barrier) {
+                if (stockPrice[i] >= this.barrier) {
                     pass = true;
                     break;
                 }
             }
                 
             if (pass) {
-                profit = strike - stockPrice[stockPrice.length - 1];
+                profit = this.strike - stockPrice[stockPrice.length - 1];
             }
         }
-        else if (type.equals("PutDownIn")) {
+        else if (this.type.equals("PutDownIn")) {
             pass = false;
             for (i = 0; i < stockPrice.length; i++) {
-                if (stockPrice[i] <= barrier) {
+                if (stockPrice[i] <= this.barrier) {
                     pass = true;
                     break;
                 }
             }
                 
             if (pass) {
-                profit = strike - stockPrice[stockPrice.length - 1];
+                profit = this.strike - stockPrice[stockPrice.length - 1];
             }
         }
-        else if (type.equals("PutUpOut")) {
+        else if (this.type.equals("PutUpOut")) {
             pass = true;
             for (i = 0; i < stockPrice.length; i++) {
-                if (stockPrice[i] >= barrier) {
+                if (stockPrice[i] >= this.barrier) {
                     pass = false;
                     break;
                 }
             }
                 
             if (pass) {
-                profit = strike - stockPrice[stockPrice.length - 1];
+                profit = this.strike - stockPrice[stockPrice.length - 1];
             }
         }
-        else if (type.equals("PutDownOut")) {
+        else if (this.type.equals("PutDownOut")) {
             pass = true;
             for (i = 0; i < stockPrice.length; i++) {
-                if (stockPrice[i] <= barrier) {
+                if (stockPrice[i] <= this.barrier) {
                     pass = false;
                     break;
                 }
             }
                 
             if (pass) {
-                profit = strike - stockPrice[stockPrice.length - 1];
+                profit = this.strike - stockPrice[stockPrice.length - 1];
             }
         }
 
         if (profit < 0) this.price = 0;
-        else Discount(profit);
+        else this.price = Discount(profit, this.duration);
 
         return this.price;
     }
 
 
-    public double Discount(double profit) {
-        this.price=profit*Math.exp(-this.riskFreeRate*this.duration/365.0);
-        return this.price;
+    public double Discount(double profit, double contractDuration) {        
+        return profit*Math.exp(-this.riskFreeRate*contractDuration/365.0);
     }
     
 }

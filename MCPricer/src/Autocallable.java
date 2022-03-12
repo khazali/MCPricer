@@ -1,39 +1,50 @@
 import org.joda.time.*;
 import org.joda.time.format.*;
 
-public class AsianOption implements FinancialInstrument {
+public class Autocallable implements FinancialInstrument {
     private double strike;
     private double riskFreeRate;
     private double impliedVolatility;
-    private String type;
     private DateTime valuationDate=new DateTime();
     private DateTime maturityDate=new DateTime();
     private double initialStockPrice;
     private int duration;
     private double price;
+    private double barrier;
+    private double coupon;
     private int valuationInterval;
     private int numberOfIntervals;
 
-    public AsianOption(double initialStockPrice, double strike, double valuationInterval, double riskFreeRate, double impliedVolatility, String valuationDate, String maturityDate, String type) throws IncorrectContractType, DurationNotDivisible {
+    public Autocallable(double initialStockPrice, double strike, double barrier, double coupon, double valuationInterval, double riskFreeRate, double impliedVolatility, String valuationDate, String maturityDate) throws DurationNotDivisible {
         SetStrike(strike);
         SetRiskFreeRate(riskFreeRate);
         SetImpliedVolatility(impliedVolatility);
-        SetType(type);
         SetValuationDate(valuationDate);
         SetMaturityDate(maturityDate);        
         SetInitialStockPrice(initialStockPrice);
+        SetBarrier(barrier);
         SetValuationInterval(valuationInterval);
+        SetCoupon(coupon);
     }
 
-    public AsianOption(double initialStockPrice, double strike, double valuationInterval, double riskFreeRate, double impliedVolatility, double duration, String type) throws IncorrectContractType, DurationNotDivisible {
+    public Autocallable(double initialStockPrice, double strike, double barrier, double coupon, double valuationInterval, double riskFreeRate, double impliedVolatility, double duration) throws DurationNotDivisible {
         SetStrike(strike);
         SetRiskFreeRate(riskFreeRate);
         SetImpliedVolatility(impliedVolatility);
-        SetType(type);
         SetDuration(((int) Math.round(duration*365.0)));
         SetInitialStockPrice(initialStockPrice);
+        SetBarrier(barrier);
         SetValuationInterval(valuationInterval);
+        SetCoupon(coupon);
     }
+    
+    public void SetCoupon(double coupon) {
+        this.coupon = coupon;
+    }
+
+    public void SetBarrier(double barrier) {
+        this.barrier = barrier;
+    }    
 
     public void SetValuationInterval(double valuationInterval) throws DurationNotDivisible {
         this.valuationInterval = (int) Math.round(365.0*valuationInterval);
@@ -83,15 +94,6 @@ public class AsianOption implements FinancialInstrument {
         return this.initialStockPrice;
     }
 
-    public void SetType(String type) throws IncorrectContractType {
-        if (type.equals("CallGeometric") || type.equals("CallArithmetic") || type.equals("PutGeometric") || type.equals("PutArithmetic")) {
-            this.type = type;
-        } else {
-            throw new IncorrectContractType("Incorrect contract type");
-        }
-        //this.type = type;
-    }    
-
     public int GetDuration() {
         return this.duration;
     }
@@ -107,39 +109,24 @@ public class AsianOption implements FinancialInstrument {
     
     public double CaculatePrice(double [] stockPrice) {
         double profit = 0;
-        double s;
-        int i;
-
-
-        if (this.type.equals("CallGeometric")) {
-            s = 1;
-            for (i = 0; i < this.numberOfIntervals; i++) s*=stockPrice[(i + 1)*this.valuationInterval - 1];
-            s=Math.pow(s, 1.0/this.numberOfIntervals);
-            profit = s - this.strike;
-        }
-        else if (this.type.equals("CallArithmetic")) {
-            s = 0;
-            for (i = 0; i < this.numberOfIntervals; i++) s+=stockPrice[(i + 1)*this.valuationInterval - 1];
-            s/=this.numberOfIntervals;
-            profit = s - this.strike;
+        int i;       
+       
+        for (i = 0; i < numberOfIntervals; i++) {
+            if (stockPrice[(i + 1)*this.valuationInterval - 1] >= this.strike) {          //Autocall
+                profit = (1 + (i + 1)*this.coupon*this.valuationInterval/365.0)*this.initialStockPrice;
+                this.price = Discount(profit, (i + 1)*this.valuationInterval);
+                return this.price;
+            }            
         }
 
-        else if (this.type.equals("PutGeometric")) {
-            s = 1;
-            for (i = 0; i < this.numberOfIntervals; i++) s*=stockPrice[(i + 1)*this.valuationInterval - 1];
-            s=Math.pow(s, 1.0/this.numberOfIntervals);
-            profit = this.strike - s;
+        if (stockPrice[stockPrice.length - 1] >= this.barrier) {
+            this.price = Discount(this.initialStockPrice, this.duration);
         }
-        else if (this.type.equals("PutArithmetic")) {
-            s = 0;
-            for (i = 0; i < this.numberOfIntervals; i++) s+=stockPrice[(i + 1)*this.valuationInterval - 1];
-            s/=this.numberOfIntervals;
-            profit = this.strike - s;
+        else {
+            profit=stockPrice[stockPrice.length - 1];
+            this.price = Discount(this.initialStockPrice, this.duration);
         }
-
-        if (profit < 0) this.price = 0;
-        else this.price = Discount(profit, this.duration);
-
+        
         return this.price;
     }
 
@@ -147,4 +134,5 @@ public class AsianOption implements FinancialInstrument {
     public double Discount(double profit, double contractDuration) {        
         return profit*Math.exp(-this.riskFreeRate*contractDuration/365.0);
     }
+    
 }

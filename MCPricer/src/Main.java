@@ -18,8 +18,9 @@ class Main {
 
             //BarrierOption bc = new BarrierOption(49.0, 50.0, 53.0, 0.05, 0.2, 0.3846, "CallUpIn");
             //BarrierOption bc = new BarrierOption(49.0, 50.0, 53.0, 0.05, 0.2, "1/1/2022", "30/6/2022", "CallUpIn");
-            AsianOption ao = new AsianOption(49.0, 50.0, 0.08219178082191780821917808219178, 0.05, 0.2, 0.24657534246575342465753424657534, "CallGeometric");
-            MCPricer mcc = new MCPricer(1000000, ao);
+            //AsianOption ao = new AsianOption(49.0, 50.0, 0.08219178082191780821917808219178, 0.05, 0.2, 0.24657534246575342465753424657534, "CallGeometric");
+            Autocallable ac= new Autocallable(100.0, 100.0, 75.0, 0.06, 1.0, 0.1, 0.2, 6.0);
+            MCPricer mcc = new MCPricer(1000000, ac);
             System.out.println(mcc.RunSimulation());
             //mcc.CalculateGreeks();
             //System.out.println(mcc.GetPrice());
