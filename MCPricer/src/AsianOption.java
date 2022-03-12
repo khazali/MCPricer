@@ -25,7 +25,7 @@ public class AsianOption implements FinancialInstrument {
         SetRiskFreeRate(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the implied volatility per year (fraction): ");
         SetImpliedVolatility(Double.parseDouble(System.console().readLine()));
-        System.out.print("Please enter the contract duration (years): ");
+        System.out.print("Please enter the time to maturity (years): ");
         SetDuration((int) (365.0*Double.parseDouble(System.console().readLine())));
         System.out.print("Please enter the contract+averaging type (CallGeometric | CallArithmetic | PutGeometric | PutArithmetic): ");        
         SetType(System.console().readLine());

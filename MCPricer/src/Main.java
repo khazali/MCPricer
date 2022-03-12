@@ -13,13 +13,13 @@ class Main {
         System.out.println("5- Run tests");
         System.out.println("");
         System.out.print("Please enter you selection: ");
-        selection = Integer.parseInt(System.console().readLine());
-        System.out.print("Please enter the number of paths: ");
-        N = Integer.parseInt(System.console().readLine());
+        selection = Integer.parseInt(System.console().readLine());        
         
 
         switch (selection) {
             case 1:
+                System.out.print("Please enter the number of paths: ");
+                N = Integer.parseInt(System.console().readLine());
                 try {
                     EuropeanOption option = new EuropeanOption();
                     MCPricer mcp = new MCPricer(N, option);
@@ -40,6 +40,8 @@ class Main {
                 break;
 
             case 2:
+                System.out.print("Please enter the number of paths: ");
+                N = Integer.parseInt(System.console().readLine());            
                 try {
                     BarrierOption option = new BarrierOption();
                     MCPricer mcp = new MCPricer(N, option);
@@ -60,6 +62,8 @@ class Main {
                 break;
 
             case 3:
+                System.out.print("Please enter the number of paths: ");
+                N = Integer.parseInt(System.console().readLine());
                 try {
                     AsianOption option = new AsianOption();
                     MCPricer mcp = new MCPricer(N, option);
@@ -80,6 +84,8 @@ class Main {
                 break;
 
             case 4:
+                System.out.print("Please enter the number of paths: ");
+                N = Integer.parseInt(System.console().readLine());
                 try {
                     Autocallable option = new Autocallable();
                     MCPricer mcp = new MCPricer(N, option);
@@ -100,69 +106,13 @@ class Main {
                 break;
                 
             case 5:
-                ///Todo tests
+                Tests ts =  new Tests();
                 break;
 
             default:
                 System.out.println("Invalid selection");
                 break;
-        }
- 
-
-        
-
-
-
-
-
-
-
-
-
-
-
-        //BlackScholesMerton bsc = new BlackScholesMerton(42.0, 40.0, 0.1, 0.2, 0.5, "Call");
-        //System.out.println("");
-        //BlackScholesMerton bsp = new BlackScholesMerton(42.0, 40.0, 0.1, 0.2, 0.5, "Put");
-        //BlackScholesMerton bsc = new BlackScholesMerton(49.0, 50.0, 0.05, 0.2, 0.3846, "Call");
-
-        //try {
-            //EuropeanOption eoc = new EuropeanOption(42.0, 40.0, 0.1, 0.2, 0.5, "Call");
-            /*
-            EuropeanOption eoc = new EuropeanOption(49.0, 50.0, 0.05, 0.2, 0.3846, "Call");
-            MCPricer mcc = new MCPricer(1000000, eoc);
-            mcc.CalculateGreeks();
-            System.out.println(mcc.GetDelta());
-            System.out.println(mcc.GetGamma());
-            System.out.println(mcc.GetVega()); */
-
-
-            //BarrierOption bc = new BarrierOption(49.0, 50.0, 53.0, 0.05, 0.2, 0.3846, "CallUpIn");
-            //BarrierOption bc = new BarrierOption(49.0, 50.0, 53.0, 0.05, 0.2, "1/1/2022", "30/6/2022", "CallUpIn");
-            //AsianOption ao = new AsianOption(49.0, 50.0, 0.08219178082191780821917808219178, 0.05, 0.2, 0.24657534246575342465753424657534, "CallGeometric");
-            //Autocallable ac= new Autocallable(100.0, 100.0, 75.0, 0.06, 1.0, 0.1, 0.2, 6.0);
-            //MCPricer mcc = new MCPricer(1000000, ac);
-            //System.out.println(mcc.RunSimulation());
-            //System.out.println(mcc.GetConfidenceInterval());
-            //mcc.CalculateGreeks();
-            //System.out.println(mcc.GetPrice());
-            //System.out.println(mcc.GetDelta());
-            //System.out.println(mcc.GetGamma());
-            //System.out.println(mcc.GetVega());
-            
-
-            //System.out.println(mcc.RunSimulation());
-
-            //EuropeanOption eop = new EuropeanOption(42.0, 40.0, 0.1, 0.2, 0.5, "Put");
-            //MCPricer mcp = new MCPricer(1000000, eop);
-            //System.out.println(mcp.RunSimulation());
-
-        //} catch (Exception e) {
-            //System.out.println("Exception: " + e.getMessage());
-            //1System.exit(-1);
-        //}
-
-        
+        }        
     }   
     
 }
