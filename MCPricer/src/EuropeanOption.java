@@ -72,12 +72,11 @@ public class EuropeanOption implements FinancialInstrument {
     }
 
     public void SetType(String type) throws IncorrectContractType {
-        if (type.equals("Call") || type.equals("Put")) {
+        if (this.type.equals("Call") || this.type.equals("Put")) {
             this.type = type;
         } else {
             throw new IncorrectContractType("Incorrect contract type");
         }
-        //this.type = type;
     }    
 
     public int GetDuration() {
@@ -97,10 +96,10 @@ public class EuropeanOption implements FinancialInstrument {
         double profit = 0;
 
         if (this.type.equals("Call")) {
-            profit=stockPrice[stockPrice.length-1]-this.strike;
+            profit = stockPrice[stockPrice.length-1]-this.strike;
         }
         else if (this.type.equals("Put")) {
-            profit=this.strike-stockPrice[stockPrice.length-1];
+            profit = this.strike-stockPrice[stockPrice.length-1];
         }
         
         if (profit < 0) this.price = 0;

@@ -6,8 +6,8 @@ public class BarrierOption implements FinancialInstrument {
     private double riskFreeRate;
     private double impliedVolatility;
     private String type;
-    private DateTime valuationDate=new DateTime();
-    private DateTime maturityDate=new DateTime();
+    private DateTime valuationDate = new DateTime();
+    private DateTime maturityDate = new DateTime();
     private double initialStockPrice;
     private int duration;
     private double price;
@@ -79,12 +79,11 @@ public class BarrierOption implements FinancialInstrument {
     }
 
     public void SetType(String type) throws IncorrectContractType {
-        if (type.equals("CallUpIn") || type.equals("CallDownIn") || type.equals("PutUpIn") || type.equals("PutDownIn") || type.equals("CallUpOut") || type.equals("CallDownOut") || type.equals("PutUpOut") || type.equals("PutDownOut")) {
+        if (this.type.equals("CallUpIn") || this.type.equals("CallDownIn") || this.type.equals("PutUpIn") || this.type.equals("PutDownIn") || this.type.equals("CallUpOut") || this.type.equals("CallDownOut") || this.type.equals("PutUpOut") || this.type.equals("PutDownOut")) {
             this.type = type;
         } else {
             throw new IncorrectContractType("Incorrect contract type");
         }
-        //this.type = type;
     }
    
     public int GetDuration() {

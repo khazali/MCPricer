@@ -22,6 +22,7 @@ class Main {
             Autocallable ac= new Autocallable(100.0, 100.0, 75.0, 0.06, 1.0, 0.1, 0.2, 6.0);
             MCPricer mcc = new MCPricer(1000000, ac);
             System.out.println(mcc.RunSimulation());
+            System.out.println(mcc.GetConfidenceInterval());
             //mcc.CalculateGreeks();
             //System.out.println(mcc.GetPrice());
             //System.out.println(mcc.GetDelta());
@@ -36,7 +37,7 @@ class Main {
             //System.out.println(mcp.RunSimulation());
 
         } catch (Exception e) {
-            System.out.println("Exception: "+e.getMessage());
+            System.out.println("Exception: " + e.getMessage());
             System.exit(-1);
         }
 
