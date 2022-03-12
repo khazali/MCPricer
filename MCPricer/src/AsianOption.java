@@ -14,6 +14,23 @@ public class AsianOption implements FinancialInstrument {
     private int valuationInterval;
     private int numberOfIntervals;
 
+    public AsianOption() throws IncorrectContractType, DurationNotDivisible {
+        System.out.print("Please enter the current underlying price: ");
+        SetInitialStockPrice(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the strike price: ");
+        SetStrike(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the valuation interval (years): ");
+        SetValuationInterval(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the risk free rate per year (fraction): ");
+        SetRiskFreeRate(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the implied volatility per year (fraction): ");
+        SetImpliedVolatility(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the contract duration (years): ");
+        SetDuration((int) (365.0*Double.parseDouble(System.console().readLine())));
+        System.out.print("Please enter the contract+averaging type (CallGeometric | CallArithmetic | PutGeometric | PutArithmetic): ");        
+        SetType(System.console().readLine());
+    }
+
     public AsianOption(double initialStockPrice, double strike, double valuationInterval, double riskFreeRate, double impliedVolatility, String valuationDate, String maturityDate, String type) throws IncorrectContractType, DurationNotDivisible {
         SetStrike(strike);
         SetRiskFreeRate(riskFreeRate);
@@ -84,7 +101,7 @@ public class AsianOption implements FinancialInstrument {
     }
 
     public void SetType(String type) throws IncorrectContractType {
-        if (this.type.equals("CallGeometric") || this.type.equals("CallArithmetic") || this.type.equals("PutGeometric") || this.type.equals("PutArithmetic")) {
+        if (type.equals("CallGeometric") || type.equals("CallArithmetic") || type.equals("PutGeometric") || type.equals("PutArithmetic")) {
             this.type = type;
         } else {
             throw new IncorrectContractType("Incorrect contract type");

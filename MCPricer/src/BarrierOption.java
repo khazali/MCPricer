@@ -13,6 +13,23 @@ public class BarrierOption implements FinancialInstrument {
     private double price;
     private double barrier;
 
+    public BarrierOption() throws IncorrectContractType {
+        System.out.print("Please enter the current underlying price: ");
+        SetInitialStockPrice(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the strike price: ");
+        SetStrike(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the barrier price: ");
+        SetBarrier(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the risk free rate per year (fraction): ");
+        SetRiskFreeRate(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the implied volatility per year (fraction): ");
+        SetImpliedVolatility(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the contract duration (years): ");
+        SetDuration((int) (365.0*Double.parseDouble(System.console().readLine())));
+        System.out.print("Please enter the contract+barrier type (CallUpIn | CallDownIn | CallUpOut | CallDownOut | PutUpIn | PutDownIn | PutUpOut | PutDownOut): ");        
+        SetType(System.console().readLine());
+    }
+
     public BarrierOption(double initialStockPrice, double strike, double barrier, double riskFreeRate, double impliedVolatility, String valuationDate, String maturityDate, String type) throws IncorrectContractType{
         SetStrike(strike);
         SetRiskFreeRate(riskFreeRate);
@@ -79,7 +96,7 @@ public class BarrierOption implements FinancialInstrument {
     }
 
     public void SetType(String type) throws IncorrectContractType {
-        if (this.type.equals("CallUpIn") || this.type.equals("CallDownIn") || this.type.equals("PutUpIn") || this.type.equals("PutDownIn") || this.type.equals("CallUpOut") || this.type.equals("CallDownOut") || this.type.equals("PutUpOut") || this.type.equals("PutDownOut")) {
+        if (type.equals("CallUpIn") || type.equals("CallDownIn") || type.equals("PutUpIn") || type.equals("PutDownIn") || type.equals("CallUpOut") || type.equals("CallDownOut") || type.equals("PutUpOut") || type.equals("PutDownOut")) {
             this.type = type;
         } else {
             throw new IncorrectContractType("Incorrect contract type");

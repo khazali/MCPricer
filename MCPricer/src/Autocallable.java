@@ -15,6 +15,25 @@ public class Autocallable implements FinancialInstrument {
     private int valuationInterval;
     private int numberOfIntervals;
 
+    public Autocallable() throws DurationNotDivisible {
+        System.out.print("Please enter the principal: ");
+        SetInitialStockPrice(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the observation level (percent): ");
+        SetStrike(this.initialStockPrice*0.01*Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the barrier level (percent): ");
+        SetBarrier(this.initialStockPrice*0.01*Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the valuation interval (years): ");
+        SetValuationInterval(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the coupon rate per year (fraction): ");
+        SetCoupon(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the risk free rate per year (fraction): ");
+        SetRiskFreeRate(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the implied volatility per year (fraction): ");
+        SetImpliedVolatility(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the contract duration (years): ");
+        SetDuration((int) (365.0*Double.parseDouble(System.console().readLine())));        
+    }
+
     public Autocallable(double initialStockPrice, double strike, double barrier, double coupon, double valuationInterval, double riskFreeRate, double impliedVolatility, String valuationDate, String maturityDate) throws DurationNotDivisible {
         SetStrike(strike);
         SetRiskFreeRate(riskFreeRate);

@@ -12,6 +12,21 @@ public class EuropeanOption implements FinancialInstrument {
     private int duration;
     private double price;
 
+    public EuropeanOption() throws IncorrectContractType {
+        System.out.print("Please enter the current underlying price: ");
+        SetInitialStockPrice(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the strike price: ");
+        SetStrike(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the risk free rate per year (fraction): ");
+        SetRiskFreeRate(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the implied volatility per year (fraction): ");
+        SetImpliedVolatility(Double.parseDouble(System.console().readLine()));
+        System.out.print("Please enter the contract duration (years): ");
+        SetDuration((int) (365.0*Double.parseDouble(System.console().readLine())));
+        System.out.print("Please enter the contract type (Call | Put): ");        
+        SetType(System.console().readLine());
+    }
+
     public EuropeanOption(double initialStockPrice, double strike, double riskFreeRate, double impliedVolatility, String valuationDate, String maturityDate, String type) throws IncorrectContractType{
         SetStrike(strike);
         SetRiskFreeRate(riskFreeRate);
@@ -72,7 +87,7 @@ public class EuropeanOption implements FinancialInstrument {
     }
 
     public void SetType(String type) throws IncorrectContractType {
-        if (this.type.equals("Call") || this.type.equals("Put")) {
+        if (type.equals("Call") || type.equals("Put")) {
             this.type = type;
         } else {
             throw new IncorrectContractType("Incorrect contract type");
