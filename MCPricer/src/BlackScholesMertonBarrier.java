@@ -113,7 +113,7 @@ public class BlackScholesMertonBarrier {
         }
         else if (type.equals("PutUpOut")) {
             double H = barrier*Math.exp(0.5826*volatility*Math.sqrt(1.0/365.0));
-            if (H < strike) {
+            if (H < strike) {                
                 double g = riskFreeRate/(volatility*volatility) + 0.5;
                 double x1 = Math.log(price/H)/(volatility*Math.sqrt(duration)) + g*volatility*Math.sqrt(duration);
                 double y1 = Math.log(H/price)/(volatility*Math.sqrt(duration)) + g*volatility*Math.sqrt(duration);
