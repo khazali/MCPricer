@@ -13,23 +13,50 @@ public class Tests {
 
 
     public boolean RunTests() {
+        boolean ret = true;
+
         if (Test1()) System.out.println("European Call works fine!");
-        else return false;
+        else {
+            System.out.println("European Call failed!");
+            ret = false;
+        }
         if (Test2()) System.out.println("European Put works fine!");
-        else return false;
+        else {
+            System.out.println("European Put failed!");
+            ret = false;
+        }
         if (Test3()) System.out.println("Vanilla options greeks are OK!");
-        else return false;
+        else {
+            System.out.println("Vanilla options greeks failed!");
+            ret = false;
+        }
         if (Test4()) System.out.println("Barrier options work fine!");
-        else return false;
+        else {
+            System.out.println("Barrier options failed!");
+            ret = false;
+        }
         if (Test5()) System.out.println("Asian Call works fine!");
-        else return false;
+        else {
+            System.out.println("Asian Call failed!");
+            ret = false;
+        }
         if (Test6()) System.out.println("Autocallable seems fine!");
-        else return false;
+        else {
+            System.out.println("Autocallable failed!");
+            ret = false;
+        }
 
         System.out.println("");
-        System.out.println("All tests passed!");
-        System.out.println(":-)");
-        return true;
+        if (ret) {
+            System.out.println("All tests passed!");
+            System.out.println(":-)");
+        }
+        else {
+            System.out.println("Tests failed!");
+            System.out.println(":-(");
+        }
+        
+        return ret;
     }
 
     private boolean Test1() {
@@ -106,7 +133,7 @@ public class Tests {
 
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -143,7 +170,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -169,7 +196,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -196,7 +223,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -222,7 +249,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -248,7 +275,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -274,7 +301,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -300,7 +327,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -326,7 +353,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -352,7 +379,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -378,7 +405,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -404,7 +431,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -430,7 +457,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -456,7 +483,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -482,7 +509,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -508,7 +535,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -534,7 +561,7 @@ public class Tests {
             if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
             if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
             if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 5*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > 50*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
