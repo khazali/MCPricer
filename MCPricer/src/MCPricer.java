@@ -17,7 +17,7 @@ class MCPricer {
     private double delta;
     private double gamma;
     private double vega;
-    private final double Peps = 0.01;
+    private final double Peps = 0.015;
     private final double Veps = 0.02;  
     private boolean isSimulated = false;
     private double stdeviation;

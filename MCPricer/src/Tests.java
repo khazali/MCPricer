@@ -1,7 +1,7 @@
 public class Tests {
     private boolean result = false;
-    private final int numberOfSims = 1000000;
-    private final double tolerance = 1000;
+    private final int numberOfSims = 2000000;
+    private final double tolerance = 0.15;
 
     public Tests() {
         this.result = RunTests();
@@ -10,7 +10,7 @@ public class Tests {
 
     public boolean RunTests() {
         System.out.println(Test4());
-        System.out.println(Test5());
+       // System.out.println(Test5());
 
         return true;
     }
@@ -29,7 +29,7 @@ public class Tests {
             MCPricer mcc = new MCPricer(numberOfSims, eoc);
             price2 = mcc.RunSimulation();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -55,7 +55,7 @@ public class Tests {
             MCPricer mcc = new MCPricer(numberOfSims, eoc);
             price2 = mcc.RunSimulation();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -87,9 +87,9 @@ public class Tests {
             vega2 = mcc.GetVega();
 
 
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -118,10 +118,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -144,10 +144,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -171,10 +171,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -197,10 +197,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -223,10 +223,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -249,10 +249,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -275,10 +275,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -301,10 +301,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -327,10 +327,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -353,10 +353,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -379,10 +379,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -405,10 +405,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -431,10 +431,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -457,10 +457,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -483,10 +483,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -509,10 +509,10 @@ public class Tests {
             vega2 = mcc.GetVega();            
             price2 = mcc.GetPrice();
 
-            if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
+            if ((price1 != price2) && (Math.abs(price1 - price2) > tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
