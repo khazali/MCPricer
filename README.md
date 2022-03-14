@@ -51,6 +51,7 @@ The code still lacks the following features, which are being added gradually:
 
 ## Quotes
 “Every problem is a gift. Without them we wouldn’t grow” – Tony Robbins.
+
 I never refuse a good problem, which MCPricer was surely one of them. When I have a challenge, I feel alive. How abou you?
  
  
