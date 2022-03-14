@@ -1,7 +1,7 @@
 public class Tests {
     private boolean result = false;
     private final int numberOfSims = 1000000;
-    private final double tolerance = 0.10;
+    private final double tolerance = 1000;
 
     public Tests() {
         this.result = RunTests();
@@ -86,9 +86,9 @@ public class Tests {
             vega2 = mcc.GetVega();
 
 
-            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > delta1*tolerance)) return false;
-            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > gamma1*tolerance)) return false;
-            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > vega1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -99,7 +99,7 @@ public class Tests {
     }
 
     private boolean Test4() {        
-        double price1, price2;
+        double price1, price2, delta1, delta2, gamma1, gamma2, vega1, vega2;
         
         try {
             BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpIn");
@@ -107,9 +107,20 @@ public class Tests {
 
             BarrierOption bo = new BarrierOption(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -122,9 +133,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 45.0, 42.0, 0.1, 0.2, 0.5, "CallUpIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -135,11 +157,23 @@ public class Tests {
             BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 42.0, 39.0, 0.1, 0.2, 0.5, "CallDownIn");
             price1 = bs.GetPrice();
             
+            
             BarrierOption bo = new BarrierOption(40.0, 42.0, 39.0, 0.1, 0.2, 0.5, "CallDownIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -152,9 +186,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(42.0, 39.0, 41.0, 0.1, 0.2, 0.5, "CallDownIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -167,9 +212,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -182,9 +238,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -197,9 +264,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 42.0, 39.0, 0.1, 0.2, 0.5, "CallDownOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -212,9 +290,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 38.0, 39.0, 0.1, 0.2, 0.5, "CallDownOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -227,9 +316,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 38.0, 37.0, 0.1, 0.2, 0.5, "PutDownIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -242,9 +342,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 37.0, 38.0, 0.1, 0.2, 0.5, "PutDownIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -257,9 +368,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 38.0, 37.0, 0.1, 0.2, 0.5, "PutDownOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -272,9 +394,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 37.0, 38.0, 0.1, 0.2, 0.5, "PutDownOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -287,9 +420,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 38.0, 41.0, 0.1, 0.2, 0.5, "PutUpIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -302,9 +446,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(36.0, 38.0, 37.0, 0.1, 0.2, 0.5, "PutUpIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -317,9 +472,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(40.0, 39.0, 42.0, 0.1, 0.2, 0.5, "PutUpOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -332,9 +498,20 @@ public class Tests {
             
             BarrierOption bo = new BarrierOption(34.0, 38.0, 36.0, 0.1, 0.2, 0.5, "PutUpOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
-            price2 = mcc.RunSimulation();
+            mcc.CalculateGreeks();
+
+            delta1 = bs.GetDelta();
+            delta2 = mcc.GetDelta();
+            gamma1 = bs.GetGamma();
+            gamma2 = mcc.GetGamma();
+            vega1 = bs.GetVega();
+            vega2 = mcc.GetVega();            
+            price2 = mcc.GetPrice();
 
             if ((price1 != price2) && (Math.abs(price1 - price2) > price1*tolerance)) return false;
+            if ((delta1 != delta2) && (Math.abs(delta1 - delta2) > Math.abs(delta1)*tolerance)) return false;
+            if ((gamma1 != gamma2) && (Math.abs(gamma1 - gamma2) > Math.abs(gamma1)*tolerance)) return false;
+            if ((vega1 != vega2) && (Math.abs(vega1 - vega2) > Math.abs(vega1)*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
