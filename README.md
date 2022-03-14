@@ -25,7 +25,8 @@ The code still lacks the following features, which are being added gradually:
 1. A Grphical User Interface (GUI).
 2. Taking the underlying's dividends into account.
 3. Parallel processing abilities.
-4. Definitely more comments!
+4. More exact calculation of the greeks for Monte-Carlo pricing engine.
+5. Definitely more comments!
 
 
 
