@@ -106,7 +106,7 @@ class Main {
                 break;
                 
             case 5:
-                Tests ts =  new Tests();
+                new Tests();
                 break;
 
             default:
