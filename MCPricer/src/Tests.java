@@ -10,6 +10,7 @@ public class Tests {
 
     public boolean RunTests() {
         System.out.println(Test4());
+        System.out.println(Test5());
 
         return true;
     }
@@ -102,10 +103,10 @@ public class Tests {
         double price1, price2, delta1, delta2, gamma1, gamma2, vega1, vega2;
         
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpIn");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(38.0, 42.0, 46.0, 0.1, 0.2, 0.5, "CallUpIn");
             price1 = bs.GetPrice();
 
-            BarrierOption bo = new BarrierOption(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpIn");            
+            BarrierOption bo = new BarrierOption(38.0, 42.0, 46.0, 0.1, 0.2, 0.5, "CallUpIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -128,10 +129,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 45.0, 42.0, 0.1, 0.2, 0.5, "CallUpIn");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(38.0, 46.0, 42.0, 0.1, 0.2, 0.5, "CallUpIn");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 45.0, 42.0, 0.1, 0.2, 0.5, "CallUpIn");            
+            BarrierOption bo = new BarrierOption(38.0, 46.0, 42.0, 0.1, 0.2, 0.5, "CallUpIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -154,11 +155,11 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 42.0, 39.0, 0.1, 0.2, 0.5, "CallDownIn");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(42.0, 46.0, 38.0, 0.1, 0.2, 0.5, "CallDownIn");
             price1 = bs.GetPrice();
             
             
-            BarrierOption bo = new BarrierOption(40.0, 42.0, 39.0, 0.1, 0.2, 0.5, "CallDownIn");            
+            BarrierOption bo = new BarrierOption(42.0, 46.0, 38.0, 0.1, 0.2, 0.5, "CallDownIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -181,10 +182,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(42.0, 39.0, 41.0, 0.1, 0.2, 0.5, "CallDownIn");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(46.0, 38.0, 42.0, 0.1, 0.2, 0.5, "CallDownIn");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(42.0, 39.0, 41.0, 0.1, 0.2, 0.5, "CallDownIn");            
+            BarrierOption bo = new BarrierOption(46.0, 38.0, 42.0, 0.1, 0.2, 0.5, "CallDownIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -207,10 +208,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpOut");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(38.0, 42.0, 46.0, 0.1, 0.2, 0.5, "CallUpOut");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpOut");            
+            BarrierOption bo = new BarrierOption(38.0, 42.0, 46.0, 0.1, 0.2, 0.5, "CallUpOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -233,10 +234,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpOut");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(38.0, 42.0, 46.0, 0.1, 0.2, 0.5, "CallUpOut");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 42.0, 45.0, 0.1, 0.2, 0.5, "CallUpOut");            
+            BarrierOption bo = new BarrierOption(38.0, 42.0, 46.0, 0.1, 0.2, 0.5, "CallUpOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -259,10 +260,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 42.0, 39.0, 0.1, 0.2, 0.5, "CallDownOut");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(42.0, 46.0, 38.0, 0.1, 0.2, 0.5, "CallDownOut");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 42.0, 39.0, 0.1, 0.2, 0.5, "CallDownOut");            
+            BarrierOption bo = new BarrierOption(42.0, 46.0, 38.0, 0.1, 0.2, 0.5, "CallDownOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -285,10 +286,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 38.0, 39.0, 0.1, 0.2, 0.5, "CallDownOut");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(46.0, 38.0, 42.0, 0.1, 0.2, 0.5, "CallDownOut");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 38.0, 39.0, 0.1, 0.2, 0.5, "CallDownOut");            
+            BarrierOption bo = new BarrierOption(46.0, 38.0, 42.0, 0.1, 0.2, 0.5, "CallDownOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -311,10 +312,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 38.0, 37.0, 0.1, 0.2, 0.5, "PutDownIn");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(46.0, 42.0, 38.0, 0.1, 0.2, 0.5, "PutDownIn");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 38.0, 37.0, 0.1, 0.2, 0.5, "PutDownIn");            
+            BarrierOption bo = new BarrierOption(46.0, 42.0, 38.0, 0.1, 0.2, 0.5, "PutDownIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -337,10 +338,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 37.0, 38.0, 0.1, 0.2, 0.5, "PutDownIn");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(46.0, 38.0, 42.0, 0.1, 0.2, 0.5, "PutDownIn");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 37.0, 38.0, 0.1, 0.2, 0.5, "PutDownIn");            
+            BarrierOption bo = new BarrierOption(46.0, 38.0, 42.0, 0.1, 0.2, 0.5, "PutDownIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -363,10 +364,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 38.0, 37.0, 0.1, 0.2, 0.5, "PutDownOut");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(46.0, 42.0, 38.0, 0.1, 0.2, 0.5, "PutDownOut");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 38.0, 37.0, 0.1, 0.2, 0.5, "PutDownOut");            
+            BarrierOption bo = new BarrierOption(46.0, 42.0, 38.0, 0.1, 0.2, 0.5, "PutDownOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -389,10 +390,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 37.0, 38.0, 0.1, 0.2, 0.5, "PutDownOut");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(46.0, 38.0, 42.0, 0.1, 0.2, 0.5, "PutDownOut");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 37.0, 38.0, 0.1, 0.2, 0.5, "PutDownOut");            
+            BarrierOption bo = new BarrierOption(46.0, 38.0, 42.0, 0.1, 0.2, 0.5, "PutDownOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -415,10 +416,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 38.0, 41.0, 0.1, 0.2, 0.5, "PutUpIn");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(42.0, 38.0, 46.0, 0.1, 0.2, 0.5, "PutUpIn");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 38.0, 41.0, 0.1, 0.2, 0.5, "PutUpIn");            
+            BarrierOption bo = new BarrierOption(42.0, 38.0, 46.0, 0.1, 0.2, 0.5, "PutUpIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -441,10 +442,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(36.0, 38.0, 37.0, 0.1, 0.2, 0.5, "PutUpIn");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(38.0, 46.0, 42.0, 0.1, 0.2, 0.5, "PutUpIn");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(36.0, 38.0, 37.0, 0.1, 0.2, 0.5, "PutUpIn");            
+            BarrierOption bo = new BarrierOption(38.0, 46.0, 42.0, 0.1, 0.2, 0.5, "PutUpIn");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -467,10 +468,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(40.0, 39.0, 42.0, 0.1, 0.2, 0.5, "PutUpOut");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(42.0, 38.0, 46.0, 0.1, 0.2, 0.5, "PutUpOut");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(40.0, 39.0, 42.0, 0.1, 0.2, 0.5, "PutUpOut");            
+            BarrierOption bo = new BarrierOption(42.0, 38.0, 46.0, 0.1, 0.2, 0.5, "PutUpOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -493,10 +494,10 @@ public class Tests {
         }
 
         try {
-            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(34.0, 38.0, 36.0, 0.1, 0.2, 0.5, "PutUpOut");
+            BlackScholesMertonBarrier bs = new BlackScholesMertonBarrier(38.0, 46.0, 42.0, 0.1, 0.2, 0.5, "PutUpOut");
             price1 = bs.GetPrice();
             
-            BarrierOption bo = new BarrierOption(34.0, 38.0, 36.0, 0.1, 0.2, 0.5, "PutUpOut");            
+            BarrierOption bo = new BarrierOption(38.0, 46.0, 42.0, 0.1, 0.2, 0.5, "PutUpOut");            
             MCPricer mcc = new MCPricer(numberOfSims, bo);
             mcc.CalculateGreeks();
 
@@ -522,4 +523,43 @@ public class Tests {
         
         return true;
     }
+
+
+    private boolean Test5() {
+        try {
+            AsianOption ao = new AsianOption(50.0, 50.0, 1.0/365.0, 0.1, 0.4, 1.0, "CallArithmetic");            
+            MCPricer mcc = new MCPricer(numberOfSims, ao);
+            System.out.println(mcc.RunSimulation());
+        }
+        catch (Exception err) {
+            System.out.println("Exception: " + err.getMessage());
+            System.exit(-1);
+        }
+
+
+        try {
+            AsianOption ao = new AsianOption(50.0, 50.0, 1.0/52.0, 0.1, 0.4, 364.0/365.0, "CallArithmetic");            
+            MCPricer mcc = new MCPricer(numberOfSims, ao);
+            System.out.println(mcc.RunSimulation());
+        }
+        catch (Exception err) {
+            System.out.println("Exception: " + err.getMessage());
+            System.exit(-1);
+        }
+
+        try {
+            AsianOption ao = new AsianOption(50.0, 50.0, 1.0/12.0, 0.1, 0.4, 360.0/365.0, "CallArithmetic");            
+            MCPricer mcc = new MCPricer(numberOfSims, ao);
+            System.out.println(mcc.RunSimulation());
+        }
+        catch (Exception err) {
+            System.out.println("Exception: " + err.getMessage());
+            System.exit(-1);
+        }
+
+        return true;
+    }
 }
+
+
+
