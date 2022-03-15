@@ -11,6 +11,7 @@ class Main {
         System.out.println("3- Asian");
         System.out.println("4- Autocallable");
         System.out.println("5- Run tests");
+        System.out.println("6- Exit");
         System.out.println("");
         System.out.print("Please enter you selection: ");
         selection = Integer.parseInt(System.console().readLine());        
@@ -106,7 +107,11 @@ class Main {
                 break;
                 
             case 5:
+                System.out.println("");
                 new Tests();
+                break;
+
+            case 6:                
                 break;
 
             default:
