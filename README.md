@@ -40,7 +40,7 @@ After the run, you are presented with the available financial instruments to be 
 * Continuous compounding was used.
 * A year is considered to be 365 days.
 * Underlying stock pays no dividend.
-* Only the closing price of the underlying is considered.
+* Only the daily closing price of the underlying is considered.
 * The duration of observing autocallable is assumed to be fixed. In each observation, the payoff is assumed to be the next multiple of the base payoff.
 
 
