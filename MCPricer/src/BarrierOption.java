@@ -24,7 +24,7 @@ public class BarrierOption implements FinancialInstrument {
         SetRiskFreeRate(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the implied volatility per year (fraction): ");
         SetImpliedVolatility(Double.parseDouble(System.console().readLine()));
-        System.out.print("Please enter the ctime to maturity (years): ");
+        System.out.print("Please enter the time to maturity (years): ");
         SetDuration((int) (365.0*Double.parseDouble(System.console().readLine())));
         System.out.print("Please enter the contract+barrier type (CallUpIn | CallDownIn | CallUpOut | CallDownOut | PutUpIn | PutDownIn | PutUpOut | PutDownOut): ");        
         SetType(System.console().readLine());

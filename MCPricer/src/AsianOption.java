@@ -20,13 +20,14 @@ public class AsianOption implements FinancialInstrument {
         System.out.print("Please enter the strike price: ");
         SetStrike(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the valuation interval (years): ");
-        SetValuationInterval((int) (365.0*Double.parseDouble(System.console().readLine())));
+        int ValInt = (int) (365.0*Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the risk free rate per year (fraction): ");
         SetRiskFreeRate(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the implied volatility per year (fraction): ");
         SetImpliedVolatility(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the time to maturity (years): ");
         SetDuration((int) (365.0*Double.parseDouble(System.console().readLine())));
+        SetValuationInterval(ValInt);
         System.out.print("Please enter the contract+averaging type (CallGeometric | CallArithmetic | PutGeometric | PutArithmetic): ");        
         SetType(System.console().readLine());
     }
@@ -55,7 +56,7 @@ public class AsianOption implements FinancialInstrument {
     public void SetValuationInterval(int valuationInterval) throws DurationNotDivisible {
         this.valuationInterval = valuationInterval;
         if (this.duration%this.valuationInterval != 0) {
-            throw new DurationNotDivisible("Valuation interval must be a factor of the duration");
+            throw new DurationNotDivisible("Valuation interval must be a factor of the time to maturity");
         }
         this.numberOfIntervals = this.duration/this.valuationInterval;
     }

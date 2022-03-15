@@ -3,7 +3,7 @@ class Main {
         double ci, price;
         int selection, N;
 
-        System.out.println("Welcome to Monte-Carlo pricing program!");
+        System.out.println("Welcome to Monte-Carlo pricing tool!");
         System.out.println("Please choose the option type:");
 
         System.out.println("1- European");

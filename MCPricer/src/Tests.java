@@ -587,7 +587,7 @@ public class Tests {
             MCPricer mcc = new MCPricer(numberOfSims, ao);
             price = mcc.RunSimulation();
 
-            if ((price != 5.62) && (Math.abs(price - 5.62) > 5*tolerance)) return false;
+            if ((price != 5.62) && (Math.abs(price - 5.62) > 2*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -596,11 +596,11 @@ public class Tests {
 
 
         try {
-            AsianOption ao = new AsianOption(50.0, 50.0, 1.0/52.0, 0.1, 0.4, 364.0/365.0, "CallArithmetic");            
+            AsianOption ao = new AsianOption(50.0, 50.0, 7.0/365.0, 0.1, 0.4, 364.0/365.0, "CallArithmetic");            
             MCPricer mcc = new MCPricer(numberOfSims, ao);
             price = mcc.RunSimulation();
 
-            if ((price != 6.0) && (Math.abs(price - 6.0) > 5*tolerance)) return false;
+            if ((price != 5.7) && (Math.abs(price - 5.7) > 2*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());
@@ -608,11 +608,11 @@ public class Tests {
         }
 
         try {
-            AsianOption ao = new AsianOption(50.0, 50.0, 1.0/12.0, 0.1, 0.4, 360.0/365.0, "CallArithmetic");            
+            AsianOption ao = new AsianOption(50.0, 50.0, 30.0/365.0, 0.1, 0.4, 360.0/365.0, "CallArithmetic");            
             MCPricer mcc = new MCPricer(numberOfSims, ao);
             price = mcc.RunSimulation();
 
-            if ((price != 5.70) && (Math.abs(price - 5.70) > 5*tolerance)) return false;
+            if ((price != 6.0) && (Math.abs(price - 6.0) > 2*tolerance)) return false;
         }
         catch (Exception err) {
             System.out.println("Exception: " + err.getMessage());

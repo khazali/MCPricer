@@ -57,7 +57,8 @@ The code still lacks the following features, which are being added gradually:
 5. A more rigourous testing of Asian opions and autocallables.
 6. Pricing of more financial instruments.
 7. Multiple underlyings.
-8. Definitely more comments!
+8. Implementing the Kahan summation algorithm to reduce round-off errors in Monte-Carlo engine.
+9. Definitely more comments!
 
 
 ## Tests

@@ -23,7 +23,7 @@ public class Autocallable implements FinancialInstrument {
         System.out.print("Please enter the barrier level (percent): ");
         SetBarrier(this.initialStockPrice*0.01*Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the valuation interval (years): ");
-        SetValuationInterval((int) (365.0*Double.parseDouble(System.console().readLine())));
+        int ValInt = (int) (365.0*Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the coupon rate per year (fraction): ");
         SetCoupon(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the risk free rate per year (fraction): ");
@@ -31,7 +31,8 @@ public class Autocallable implements FinancialInstrument {
         System.out.print("Please enter the implied volatility per year (fraction): ");
         SetImpliedVolatility(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the time to maturity (years): ");
-        SetDuration((int) (365.0*Double.parseDouble(System.console().readLine())));        
+        SetDuration((int) (365.0*Double.parseDouble(System.console().readLine())));
+        SetValuationInterval(ValInt);       
     }
 
     public Autocallable(double initialStockPrice, double strike, double barrier, double coupon, double valuationInterval, double riskFreeRate, double impliedVolatility, String valuationDate, String maturityDate) throws DurationNotDivisible {
@@ -68,7 +69,7 @@ public class Autocallable implements FinancialInstrument {
     public void SetValuationInterval(int valuationInterval) throws DurationNotDivisible {
         this.valuationInterval = valuationInterval;
         if (this.duration%this.valuationInterval != 0) {
-            throw new DurationNotDivisible("Valuation interval must be a factor of the duration");
+            throw new DurationNotDivisible("Valuation interval must be a factor of the time to maturity");
         }
         this.numberOfIntervals=this.duration/this.valuationInterval;
     }
