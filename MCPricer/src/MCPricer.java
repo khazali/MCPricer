@@ -36,7 +36,9 @@ class MCPricer {
         this.fi = Instrument;        
     }
 
-    public void ConstructStockPrice() {        
+    public void ConstructStockPrice() {   
+        //Constructing the geometric Brownian motion
+
         int i;
         double W = 0;       
 
@@ -47,6 +49,9 @@ class MCPricer {
     }
 
     public double RunSimulation() {
+        //Running the actual Monte-Carlo simulations
+
+        
         int i;
         double sum = 0;
         double sum2 = 0;
@@ -95,6 +100,8 @@ class MCPricer {
     }
 
     public void CalculateGreeks() {
+        //Calculate the greeks using the finite-difference scheme
+
         double FPlusD, FMinusD, F, vol, S0, CPeps, CVeps;
 
         CPeps = this.Peps*this.initialStockPrice;           //Scale epsilons
