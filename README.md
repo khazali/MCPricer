@@ -11,8 +11,8 @@ The code can calculate the following option prices and their greeks using Monte-
 4.	Autocallable (in Autocallable.java)
 
 The Monte-Carlo method is implemented in MCPricer.java. It is initialized by the number of paths and an object of the above classes. In addition, analytical solutions of the Black-Scholes-Merton equation can be calculated for the pricing of the following options (which are used to test the validity of Monte-Carlo method for similar cases):
-1.	European options
-2.	Barrier options
+1.	European options (in BlackScholesMerton.java)
+2.	Barrier options (in BlackScholesMertonBarrier.java)
 
 The option classes implement the FinancialInstrument (in FinancialInstrument.java) interface and have multiple constructors for flexibility. The default constructor uses the console to get the required data from the user. The interested readers are encouraged to check the code for themselves and contact me if there are any questions.
 
