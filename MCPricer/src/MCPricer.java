@@ -56,13 +56,26 @@ class MCPricer {
         double sum = 0;
         double sum2 = 0;
         double x;
+        double c, y, t, c2, y2, t2, a;         //For the Kahan summation algorithm
 
-        
+        c = 0;
+        c2 = 0;
         for (i = 0; i < this.numberOfSims; i++) {
             ConstructStockPrice();
             x = this.fi.CaculatePrice(this.stockPrice);
-            sum += x;
-            sum2 += x*x;
+            a = x*x;
+
+            y = x - c;
+            t = sum + y;
+            c = (t - sum) - y;
+            sum = t;
+            //sum += x;
+            //sum2 += x*x;
+
+            y2 = a - c2;
+            t2 = sum2 + y2;
+            c2 = (t2 - sum2) - y2;
+            sum2 = t2;
         }
 
         if (!this.isSimulated) {
