@@ -20,7 +20,7 @@ public class AsianOption implements FinancialInstrument {
         System.out.print("Please enter the strike price: ");
         SetStrike(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the valuation interval (years): ");
-        SetValuationInterval(Double.parseDouble(System.console().readLine()));
+        SetValuationInterval((int) (365.0*Double.parseDouble(System.console().readLine())));
         System.out.print("Please enter the risk free rate per year (fraction): ");
         SetRiskFreeRate(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the implied volatility per year (fraction): ");
@@ -39,7 +39,7 @@ public class AsianOption implements FinancialInstrument {
         SetValuationDate(valuationDate);
         SetMaturityDate(maturityDate);        
         SetInitialStockPrice(initialStockPrice);
-        SetValuationInterval(valuationInterval);
+        SetValuationInterval(((int) Math.round(valuationInterval*365.0)));
     }
 
     public AsianOption(double initialStockPrice, double strike, double valuationInterval, double riskFreeRate, double impliedVolatility, double duration, String type) throws IncorrectContractType, DurationNotDivisible {
@@ -49,15 +49,15 @@ public class AsianOption implements FinancialInstrument {
         SetType(type);
         SetDuration(((int) Math.round(duration*365.0)));
         SetInitialStockPrice(initialStockPrice);
-        SetValuationInterval(valuationInterval);
+        SetValuationInterval(((int) Math.round(valuationInterval*365.0)));
     }
 
-    public void SetValuationInterval(double valuationInterval) throws DurationNotDivisible {
-        this.valuationInterval = (int) Math.round(365.0*valuationInterval);
+    public void SetValuationInterval(int valuationInterval) throws DurationNotDivisible {
+        this.valuationInterval = valuationInterval;
         if (this.duration%this.valuationInterval != 0) {
             throw new DurationNotDivisible("Valuation interval must be a factor of the duration");
         }
-        numberOfIntervals = this.duration/this.valuationInterval;
+        this.numberOfIntervals = this.duration/this.valuationInterval;
     }
 
     public double GetPrice() {
@@ -106,7 +106,6 @@ public class AsianOption implements FinancialInstrument {
         } else {
             throw new IncorrectContractType("Incorrect contract type");
         }
-        //this.type = type;
     }    
 
     public int GetDuration() {

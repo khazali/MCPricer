@@ -23,7 +23,7 @@ public class Autocallable implements FinancialInstrument {
         System.out.print("Please enter the barrier level (percent): ");
         SetBarrier(this.initialStockPrice*0.01*Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the valuation interval (years): ");
-        SetValuationInterval(Double.parseDouble(System.console().readLine()));
+        SetValuationInterval((int) (365.0*Double.parseDouble(System.console().readLine())));
         System.out.print("Please enter the coupon rate per year (fraction): ");
         SetCoupon(Double.parseDouble(System.console().readLine()));
         System.out.print("Please enter the risk free rate per year (fraction): ");
@@ -42,7 +42,7 @@ public class Autocallable implements FinancialInstrument {
         SetMaturityDate(maturityDate);        
         SetInitialStockPrice(initialStockPrice);
         SetBarrier(barrier);
-        SetValuationInterval(valuationInterval);
+        SetValuationInterval(((int) Math.round(valuationInterval*365.0)));
         SetCoupon(coupon);
     }
 
@@ -53,7 +53,7 @@ public class Autocallable implements FinancialInstrument {
         SetDuration(((int) Math.round(duration*365.0)));
         SetInitialStockPrice(initialStockPrice);
         SetBarrier(barrier);
-        SetValuationInterval(valuationInterval);
+        SetValuationInterval(((int) Math.round(valuationInterval*365.0)));
         SetCoupon(coupon);
     }
     
@@ -65,12 +65,12 @@ public class Autocallable implements FinancialInstrument {
         this.barrier = barrier;
     }    
 
-    public void SetValuationInterval(double valuationInterval) throws DurationNotDivisible {
-        this.valuationInterval = (int) Math.round(365.0*valuationInterval);
+    public void SetValuationInterval(int valuationInterval) throws DurationNotDivisible {
+        this.valuationInterval = valuationInterval;
         if (this.duration%this.valuationInterval != 0) {
             throw new DurationNotDivisible("Valuation interval must be a factor of the duration");
         }
-        numberOfIntervals=this.duration/this.valuationInterval;
+        this.numberOfIntervals=this.duration/this.valuationInterval;
     }
 
     public double GetPrice() {

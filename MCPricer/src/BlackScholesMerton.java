@@ -42,25 +42,25 @@ public class BlackScholesMerton {
     }
     
     private double cdf(double x) {
-        double sqrtpi=1.7724538509055160272981674833411;
-        double sqrt2=1.4142135623730950488016887242097;
-        double sum=0.0;
-        int n=0;
-        double z=x/sqrt2;
-        double a=z;
+        double sqrtpi = 1.7724538509055160272981674833411;
+        double sqrt2 = 1.4142135623730950488016887242097;
+        double sum = 0.0;
+        int n = 0;
+        double z = x/sqrt2;
+        double a = z;
         double erf;
-        double aa=10;
+        double aa = 10;
 
-        while (aa>1e-20) {
-            sum+=a;
+        while (aa > 1e-20) {
+            sum += a;
             n++;
-            a*=-z*z/(n*(2*n+1.0)/(2*n-1.0));
-            aa=(a<0)?-a:a;            
+            a *= -z*z/(n*(2*n+1.0)/(2*n-1.0));
+            aa = (a < 0) ? -a : a;            
         }
-        sum+=a;
-        erf=sum/sqrtpi;
+        sum += a;
+        erf = sum/sqrtpi;
 
-        return (0.5+erf);
+        return (0.5 + erf);
     }
 
     private double pdf(double x) {

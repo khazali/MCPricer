@@ -27,9 +27,17 @@ java -jar --enable-preview MCPricer.jar
 
 
 ## Assumptions
+* The underlying follows the geometric Brownian motion, with constant drift and volatility.
+* There are no transaction costs or taxes. All securities are perfectly divisible.
+* Security trading is continuous.
+* The risk-free interest rate, r, is constant and the same for all maturities.
+* There are no riskless arbitrage opportunities.
+* The short-selling of securities with full use of proceeds is permitted.
+* Continuous compounding was used.
 * A year is considered to be 365 days.
 * Underlying stock pays no dividend.
 * Only the closing price of the underlying is considered.
+* The duration of observing autocallable is assumed to be fixed. In each observation, the payoff is assumed to be the next multiple of the base payoff.
 
 
 
@@ -46,6 +54,11 @@ The code still lacks the following features, which are being added gradually:
 6. Pricing of more financial instruments.
 7. Multiple underlyings.
 8. Definitely more comments!
+
+
+## Tests
+The code can test the validity of the Monte-Carlo method for the European and barrier options against the analytical solutions of the Black-Scholes-Merton model. The testing of Asian options and Autocallable are approximate for now.
+Since the tests try to validate the answer in all possible conditions, the testing procedure can take a long time to complete.
 
 
 

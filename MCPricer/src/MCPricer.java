@@ -61,8 +61,8 @@ class MCPricer {
         }
 
         if (!this.isSimulated) {
-            this.stdeviation=Math.sqrt((sum2 - sum*sum/this.numberOfSims)/(this.numberOfSims - 1));
-            this.confidenceInterval=1.96*this.stdeviation/Math.sqrt((double) this.numberOfSims);                    //95% confidence interval
+            this.stdeviation = Math.sqrt((sum2 - sum*sum/this.numberOfSims)/(this.numberOfSims - 1));
+            this.confidenceInterval = 1.96*this.stdeviation/Math.sqrt((double) this.numberOfSims);                    //95% confidence interval
             this.isSimulated=true;
         }
         
@@ -97,33 +97,33 @@ class MCPricer {
     public void CalculateGreeks() {
         double FPlusD, FMinusD, F, vol, S0, CPeps, CVeps;
 
-        CPeps=this.Peps*this.initialStockPrice;           //Scale epsilons
-        CVeps=this.Veps*this.impliedVolatility;           //Scale epsilons
+        CPeps = this.Peps*this.initialStockPrice;           //Scale epsilons
+        CVeps = this.Veps*this.impliedVolatility;           //Scale epsilons
 
-        if (this.isSimulated) F=this.FPrice;
-        else F=RunSimulation();
-        vol=this.impliedVolatility;
-        S0=this.initialStockPrice;
+        if (this.isSimulated) F = this.FPrice;
+        else F = RunSimulation();
+        vol = this.impliedVolatility;
+        S0 = this.initialStockPrice;
 
-        initialStockPrice=S0+CPeps;
-        FPlusD=RunSimulation();
-        initialStockPrice=S0-CPeps;
-        FMinusD=RunSimulation();
-        this.delta=(FPlusD - FMinusD)/(2*CPeps);                   //Central difference scheme
-        this.gamma=(FPlusD + FMinusD - 2*F)/(CPeps*CPeps);            //Central difference scheme
+        initialStockPrice=S0 + CPeps;
+        FPlusD = RunSimulation();
+        initialStockPrice=S0 - CPeps;
+        FMinusD = RunSimulation();
+        this.delta = (FPlusD - FMinusD)/(2*CPeps);                   //Central difference scheme
+        this.gamma = (FPlusD + FMinusD - 2*F)/(CPeps*CPeps);            //Central difference scheme
 
-        this.initialStockPrice=S0;
-        this.impliedVolatility=vol + CVeps;
-        FPlusD=RunSimulation();
-        this.impliedVolatility=vol - CVeps;
-        FMinusD=RunSimulation();
-        this.vega=(FPlusD - FMinusD)/(2*CVeps);                    //Central difference scheme
+        this.initialStockPrice = S0;
+        this.impliedVolatility = vol + CVeps;
+        FPlusD = RunSimulation();
+        this.impliedVolatility = vol - CVeps;
+        FMinusD = RunSimulation();
+        this.vega = (FPlusD - FMinusD)/(2*CVeps);                    //Central difference scheme
 
 
 
         //return to normal
-        this.impliedVolatility=vol;        
-        this.FPrice=F;        
+        this.impliedVolatility = vol;        
+        this.FPrice = F;        
     }
     
 }

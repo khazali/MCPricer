@@ -30,7 +30,7 @@ public class Tests {
             System.out.println("Vanilla options greeks failed!");
             ret = false;
         }
-        if (Test4()) System.out.println("Barrier options work fine!");
+        if (Test4()) System.out.println("Barrier options and their greeks work fine!");
         else {
             System.out.println("Barrier options failed!");
             ret = false;
