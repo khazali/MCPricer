@@ -69,7 +69,7 @@ public class Autocallable implements FinancialInstrument {
     public void SetValuationInterval(int valuationInterval) throws DurationNotDivisible {
         this.valuationInterval = valuationInterval;
         if (this.duration%this.valuationInterval != 0) {
-            throw new DurationNotDivisible("Valuation interval must be a factor of the time to maturity");
+            throw new DurationNotDivisible("Valuation interval must be a factor of the time to maturity (in days)!");
         }
         this.numberOfIntervals=this.duration/this.valuationInterval;
     }

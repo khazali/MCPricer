@@ -56,7 +56,7 @@ public class AsianOption implements FinancialInstrument {
     public void SetValuationInterval(int valuationInterval) throws DurationNotDivisible {
         this.valuationInterval = valuationInterval;
         if (this.duration%this.valuationInterval != 0) {
-            throw new DurationNotDivisible("Valuation interval must be a factor of the time to maturity");
+            throw new DurationNotDivisible("Valuation interval must be a factor of the time to maturity (in days)!");
         }
         this.numberOfIntervals = this.duration/this.valuationInterval;
     }
@@ -105,7 +105,7 @@ public class AsianOption implements FinancialInstrument {
         if (type.equals("CallGeometric") || type.equals("CallArithmetic") || type.equals("PutGeometric") || type.equals("PutArithmetic")) {
             this.type = type;
         } else {
-            throw new IncorrectContractType("Incorrect contract type");
+            throw new IncorrectContractType("Incorrect contract type!");
         }
     }    
 

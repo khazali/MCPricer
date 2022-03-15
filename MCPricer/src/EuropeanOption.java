@@ -90,7 +90,7 @@ public class EuropeanOption implements FinancialInstrument {
         if (type.equals("Call") || type.equals("Put")) {
             this.type = type;
         } else {
-            throw new IncorrectContractType("Incorrect contract type");
+            throw new IncorrectContractType("Incorrect contract type!");
         }
     }    
 

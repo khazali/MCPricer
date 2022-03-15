@@ -99,7 +99,7 @@ public class BarrierOption implements FinancialInstrument {
         if (type.equals("CallUpIn") || type.equals("CallDownIn") || type.equals("PutUpIn") || type.equals("PutDownIn") || type.equals("CallUpOut") || type.equals("CallDownOut") || type.equals("PutUpOut") || type.equals("PutDownOut")) {
             this.type = type;
         } else {
-            throw new IncorrectContractType("Incorrect contract type");
+            throw new IncorrectContractType("Incorrect contract type!");
         }
     }
    
