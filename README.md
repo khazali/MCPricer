@@ -25,6 +25,9 @@ Just run MCPricer.jar located in MCPricer directory as:
 java -jar --enable-preview MCPricer.jar
 ```
 
+After the run, you are presented with the available financial instruments to be priced by the Monte-Carlo engine. By entering your desired choice, the model parameters will be asked, and then, results will be shown.
+
+
 
 ## Assumptions
 * Risk-neutral.
