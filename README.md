@@ -27,6 +27,7 @@ java -jar --enable-preview MCPricer.jar
 
 
 ## Assumptions
+* Risk-neutral.
 * The underlying follows the geometric Brownian motion, with constant drift and volatility.
 * There are no transaction costs or taxes. All securities are perfectly divisible.
 * Security trading is continuous.
@@ -48,7 +49,7 @@ The code still lacks the following features, which are being added gradually:
 
 1. A Grphical User Interface (GUI).
 2. Taking the underlying's dividends into account.
-3. Parallel processing abilities.
+3. Increasing the performance and adding parallel/GPU processing abilities.
 4. More precise calculation methods for the greeks in the Monte-Carlo pricing engine.
 5. A more rigourous testing of Asian opions and autocallables.
 6. Pricing of more financial instruments.
