@@ -70,7 +70,7 @@ Since the tests try to validate the answer in all possible conditions, the testi
 ## Quotes
 “Every problem is a gift. Without them we wouldn’t grow” – Tony Robbins.
 
-I never refuse a good problem, which MCPricer was surely one of them. When I have a challenge, I feel alive. How abou you?
+I never refused a good problem, which APIServer was surely one of them. When I have a challenge, I feel alive. How about you?
  
  
  
